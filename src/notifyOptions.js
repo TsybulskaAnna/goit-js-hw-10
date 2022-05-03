@@ -1,6 +1,6 @@
 export const notifyOptions = {
-    opacity: 0.9,
+    opacity: 0.8,
     clickToClose: true,
-    timeout: 2000,
+    timeout: 3000,
     showOnlyTheLastOne: true,
   };

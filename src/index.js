@@ -1,22 +1,21 @@
 import './css/styles.css';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import debounce from 'lodash.debounce';
 import { notifyOptions } from './notifyOptions';
 import { fetchCountries } from './fetchCountries';
-import debounce from 'lodash.debounce';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import * as Markup from './markup';
 
-
-const DEBOUNCE_DELAY = 300;
+const debounceCard = 300;
 const inputEl = document.querySelector('#search-box');
-inputEl.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
+inputEl.addEventListener('input', debounce(onInput, debounceCard));
 
 function onInput(event) {
   const searchValue = event.target.value;
   if (searchValue.length > 0) {
     fetchCountries(searchValue)
-      .then(data => {
+      .then(el => {
         Markup.clear();
-        Markup.draw(data);
+        Markup.draw(el);
       })
       .catch(error => {
         Notify.failure('Oops, there is no country with that name!', notifyOptions);
@@ -26,4 +25,4 @@ function onInput(event) {
   } else {
     Markup.clear();
   }
-}; 
+}

@@ -1,7 +1,6 @@
 export function fetchCountries(name) {
-    let fetchedData;
-    const searchParams = 'name,capital,population,flags,languages';
-    const url = `https://restcountries.com/v3.1/name/${name.trim()}?fields=${searchParams}`;
+    const info = 'name,capital,population,flags,languages';
+    const url = `https://restcountries.com/v3.1/name/${name.trim()}?fields=${info}`;
   
     return fetch(url).then(response => {
       if (!response.ok) {

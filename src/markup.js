@@ -1,28 +1,28 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { notifyOptions } from './notifyOptions';
-import templateCard from './handlebars/card';
-import templateList from './handlebars/list';
+import cardCountry from './handlebars/cardCountry';
+import listCountry from './handlebars/listCountry';
 
-const refs = {
+const link = {
   list: document.querySelector('.country-list'),
   card: document.querySelector('.country-info'),
 };
 
-export function draw(data) {
-  if (data.length > 10) {
+export function draw(el) {
+  if (el.length > 10) {
     Notify.info('Too many matches found. Please keep typing', notifyOptions);
     return;
   }
 
-  if (data.length === 1) {
-    refs.card.innerHTML = templateCard(data[0]);
-    console.log(data[0].flags);
+  if (el.length === 1) {
+    link.card.innerHTML = cardCountry(el[0]);
+    console.log(el[0].flags);
   } else {
-    refs.list.innerHTML = templateList(data);
+    link.list.innerHTML = listCountry(el);
   }
 }
 
 export function clear() {
-  refs.card.innerHTML = '';
-  refs.list.innerHTML = '';
-};
+  link.card.innerHTML = '';
+  link.list.innerHTML = '';
+}
